@@ -14,6 +14,17 @@ final class RMCharacterViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         title = "Characters"
+        
+        let request = RMRequest.init(endpoint: .character,queryParameters: [URLQueryItem(name: "name", value: "rick"),URLQueryItem(name: "status", value: "alive")])
+        
+        
+        RMService.shared.execute(request, expectingType: RMCharacter.self) { character in
+            
+        } onFailure: { error in
+            
+        }
+
+
     
     }
     

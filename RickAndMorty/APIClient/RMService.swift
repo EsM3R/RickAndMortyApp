@@ -9,19 +9,25 @@ import Foundation
 
 protocol RMServiceProtocol{
     
-    func execute(_ request : RMRequest ,onSuccess : @escaping () -> ())
+    func execute<T : Codable>(_ request : RMRequest ,expectingType : T.Type , onSuccess : @escaping (T) -> () , onFailure : @escaping (Error) -> ())
 }
 
-final class RMService : RMServiceProtocol{
-
-    func execute(_ request: RMRequest, onSuccess: @escaping () -> ()) {
+final class RMService: RMServiceProtocol{
+    
+    
+    func execute<T>(_ request: RMRequest, 
+                    expectingType: T.Type,
+                    onSuccess: @escaping (T) -> (),
+                    onFailure: @escaping (Error) -> ()) {
+        print("ookoko")
         
     }
     
+
+    static let shared = RMService()
     
     private init(){}
-    
-    static let shared = RMService()
+
 
     
 }
