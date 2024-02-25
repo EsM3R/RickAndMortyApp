@@ -15,7 +15,7 @@ protocol RMServiceProtocol{
 final class RMService : RMServiceProtocol{
 
     func execute(_ request: RMRequest, onSuccess: @escaping () -> ()) {
-        <#code#>
+        
     }
     
     
