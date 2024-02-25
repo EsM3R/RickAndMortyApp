@@ -13,12 +13,13 @@ fileprivate struct Constants{
 
 final class RMRequest{
     
+    public  let httpMethod = "GET"
+    
     private let endpoint : RMEndpoint
     
     private let pathComponents : [String]
     
     private let queryParameters : [URLQueryItem]
-    
     
     private var urlString : String {
         
@@ -33,7 +34,6 @@ final class RMRequest{
             string.removeLast()
         }
        
-        
         if !queryParameters.isEmpty{
             string += "/?"
             for queryParameter in queryParameters {
@@ -43,7 +43,6 @@ final class RMRequest{
             string.removeLast()
         }
        
-        
         return string
     }
     
@@ -56,4 +55,9 @@ final class RMRequest{
         self.pathComponents = pathComponents
         self.queryParameters = queryParameters
     }
+}
+
+
+extension RMRequest{
+    static let listCharactersRequest = RMRequest(endpoint: .character)
 }

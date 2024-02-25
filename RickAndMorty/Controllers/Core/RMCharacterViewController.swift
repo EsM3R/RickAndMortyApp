@@ -18,14 +18,12 @@ final class RMCharacterViewController: UIViewController {
         let request = RMRequest.init(endpoint: .character,queryParameters: [URLQueryItem(name: "name", value: "rick"),URLQueryItem(name: "status", value: "alive")])
         
         
-        RMService.shared.execute(request, expectingType: RMCharacter.self) { character in
-            
+        RMService.shared.execute(.listCharactersRequest, expectingType: RMGetAllCharactersResponse.self) { items in
+            print(items.results.count)
         } onFailure: { error in
-            
+            print(error)
         }
-
-
-    
+        
     }
     
 
