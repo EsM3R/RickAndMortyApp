@@ -8,22 +8,32 @@
 import UIKit
 
 final class RMCharacterViewController: UIViewController {
-
+    
+    private let rmCharacterListView = RMCharacterListView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
         title = "Characters"
+    
+        addConstraints()
         
-        let request = RMRequest.init(endpoint: .character,queryParameters: [URLQueryItem(name: "name", value: "rick"),URLQueryItem(name: "status", value: "alive")])
+    }
+    
+    private func addConstraints(){
         
+        view.addSubview(rmCharacterListView)
+
+        NSLayoutConstraint.activate([
         
-        RMService.shared.execute(.listCharactersRequest, expectingType: RMGetAllCharactersResponse.self) { items in
-            print(items.results.count)
-        } onFailure: { error in
-            print(error)
-        }
+            rmCharacterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            rmCharacterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            rmCharacterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            rmCharacterListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            
         
+        ])
     }
     
 
